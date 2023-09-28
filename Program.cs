@@ -4,29 +4,21 @@ using Microsoft.AspNetCore.Mvc;
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
-app.MapGet("/", () => "Hello World!");
-app.MapPost("/user",() =>new {Name = "Guilherme", Age = 28});
-app.MapGet("/AddHeader", (HttpResponse response) => {
-    response.Headers.Add("Teste","Guilherme");
-    return new {Name = "Guilherme Machado", Age = 28};
-});
-
-app.MapPost("/produtosalvo", (Produto produto) => {
+app.MapPost("/produto", (Produto produto) => {
    RepositorioProduto.Add(produto);
 });
 
-app.MapGet("/getproduto/{code}",([FromRoute] string code) => {
+app.MapGet("/produto/{code}",([FromRoute] string code) => {
     var produto = RepositorioProduto.GetBy(code); 
     return produto;
 });
 
-app.MapPut("/editproduto",(Produto produto) => {
+app.MapPut("/produto",(Produto produto) => {
     var produtoSave = RepositorioProduto.GetBy(produto.Codigo);
     produtoSave.Nome = produto.Nome;
 });
 
-
-app.MapDelete("/deleteproduto/{code}",([FromRoute] String code  ) => {
+app.MapDelete("/produto/{code}",([FromRoute] String code  ) => {
     var produtoSave = RepositorioProduto.GetBy(code);
     RepositorioProduto.Remove(produtoSave);
 });
