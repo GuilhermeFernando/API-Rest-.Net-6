@@ -68,12 +68,13 @@ public class Produto
     public int Id { get; set; }
     public string Codigo { get; set; }
     public string Nome { get; set; }
-    
+    public string Descricao { get; set; }
+        
 }
 
 public class ApplicationDbContext : DbContext
 {
     public DbSet<Produto> Produtos { get; set; }
     protected override void OnConfiguring(DbContextOptionsBuilder options)
-         => options.UseSqlServer("Server=localhost;Database=Produtos;User Id=sa;Passoword=Gui@8119;MultipleActiveResultSets=true;Encrypt=YES;TrustServerCertificate=YES");
+         => options.UseSqlServer("'-'");
 }
