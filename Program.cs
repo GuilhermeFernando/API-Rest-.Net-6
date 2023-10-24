@@ -1,7 +1,11 @@
 using System;
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+
+
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<ApplicationDbContext>();
 var app = builder.Build();
 
 app.MapPost("/produto", (Produto produto) => {
@@ -61,7 +65,15 @@ public static class RepositorioProduto
 }
 public class Produto
 {
+    public int Id { get; set; }
     public string Codigo { get; set; }
     public string Nome { get; set; }
     
+}
+
+public class ApplicationDbContext : DbContext
+{
+    public DbSet<Produto> Produtos { get; set; }
+    protected override void OnConfiguring(DbContextOptionsBuilder options)
+         => options.UseSqlServer("Server=localhost;Database=Produtos;User Id=sa;Passoword=Gui@8119;MultipleActiveResultSets=true;Encrypt=YES;TrustServerCertificate=YES");
 }

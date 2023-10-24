@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Curso\\API_Rest_C#\\API_Rest_C#.csproj": {}
+    "D:\\API-Rest-.Net-6\\API_Rest_C#.csproj": {}
   },
   "projects": {
-    "E:\\Curso\\API_Rest_C#\\API_Rest_C#.csproj": {
+    "D:\\API-Rest-.Net-6\\API_Rest_C#.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Curso\\API_Rest_C#\\API_Rest_C#.csproj",
+        "projectUniqueName": "D:\\API-Rest-.Net-6\\API_Rest_C#.csproj",
         "projectName": "API_Rest_C#",
-        "projectPath": "E:\\Curso\\API_Rest_C#\\API_Rest_C#.csproj",
-        "packagesPath": "C:\\Users\\guilherme.machado\\.nuget\\packages\\",
-        "outputPath": "E:\\Curso\\API_Rest_C#\\obj\\",
+        "projectPath": "D:\\API-Rest-.Net-6\\API_Rest_C#.csproj",
+        "packagesPath": "C:\\Users\\guife\\.nuget\\packages\\",
+        "outputPath": "D:\\API-Rest-.Net-6\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\guilherme.machado\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\guife\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -43,6 +39,22 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.12, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.12, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.12, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
