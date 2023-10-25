@@ -64,13 +64,22 @@ public static class RepositorioProduto
     }
 
 }
+
+public class  Categoria
+{
+    public int Id { get; set; }
+    public string NomeCategoria { get; set; }
+    
+}
 public class Produto
 {
     public int Id { get; set; }
     public string Codigo { get; set; }
     public string Nome { get; set; }
     public string Descricao { get; set; }
-        
+    public int CategoriaId { get; set; }
+    public Categoria Categoria {get;set;}
+
 }
 
 public class ApplicationDbContext : DbContext
@@ -87,5 +96,5 @@ public class ApplicationDbContext : DbContext
             .Property(p => p.Codigo).HasMaxLength(50).IsRequired(false);
     }
     protected override void OnConfiguring(DbContextOptionsBuilder options)
-         => options.UseSqlServer("''-''''");
+         => options.UseSqlServer("-");
 }
