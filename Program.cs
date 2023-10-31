@@ -2,11 +2,10 @@ using System.Collections.Immutable;
 using System;
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<ApplicationDbContext>();
+builder.Services.AddSqlServer<ApplicationDbContext>(builder.Configuration["Database:SqlServer"]);
 var app = builder.Build();
 
 app.MapPost("/produto", (Produto produto) => {
@@ -37,64 +36,3 @@ app.MapDelete("/produto/{code}",([FromRoute] String code  ) => {
 });
 
 app.Run();
-
-
-public static class RepositorioProduto
-{
-
-    public static List<Produto> Produtos{get;set;}
-
-    public static void Add(Produto produtos)
-    {
-        if(Produtos == null)
-        {
-            Produtos = new List<Produto>();
-            Produtos.Add(produtos);
-        }
-    }
-
-    public static Produto GetBy(string codigo)
-    {
-        return Produtos.FirstOrDefault(p => p.Codigo == codigo);
-    }
-
-    public static void Remove(Produto produto)
-    {
-        Produtos.Remove(produto);
-    }
-
-}
-
-public class  Categoria
-{
-    public int Id { get; set; }
-    public string NomeCategoria { get; set; }
-    
-}
-public class Produto
-{
-    public int Id { get; set; }
-    public string Codigo { get; set; }
-    public string Nome { get; set; }
-    public string Descricao { get; set; }
-    public int CategoriaId { get; set; }
-    public Categoria Categoria {get;set;}
-
-}
-
-public class ApplicationDbContext : DbContext
-{
-    public DbSet<Produto> Produtos { get; set; }
-
-    protected override void OnModelCreating(ModelBuilder Builder)
-    {
-        Builder.Entity<Produto>()
-            .Property(p => p.Descricao).HasMaxLength(500).IsRequired(false);
-        Builder.Entity<Produto>()
-            .Property(p => p.Nome).HasMaxLength(120).IsRequired();
-        Builder.Entity<Produto>()
-            .Property(p => p.Codigo).HasMaxLength(50).IsRequired(false);
-    }
-    protected override void OnConfiguring(DbContextOptionsBuilder options)
-         => options.UseSqlServer("-");
-}
