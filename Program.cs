@@ -8,9 +8,17 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSqlServer<ApplicationDbContext>(builder.Configuration["Database:SqlServer"]);
 var app = builder.Build();
 
-app.MapPost("/produto", (Produto produto) => {
-   RepositorioProduto.Add(produto);
-   return Results.Created($"/produto/{produto.Codigo}",produto.Codigo);
+app.MapPost("/produto", (ProdutoDto produtoDto, ApplicationDbContext context) => {
+    var categoria = context.Categorias.Where(c => c.Id == produtoDto.CategoriaId).First();
+    var produto = new Produto
+    {
+        Codigo = produtoDto.Codigo,
+        Nome = produtoDto.Nome,
+        Descricao = produtoDto.Descricao,
+        Categoria = categoria
+    };
+   context.Produtos.Add(produto);
+   return Results.Created($"/produto/{produto.Id}",produto.Id);
     
 });
 
