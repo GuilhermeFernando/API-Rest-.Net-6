@@ -34,7 +34,7 @@ namespace API_Rest_C_.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categoria", (string)null);
+                    b.ToTable("Categorias", (string)null);
                 });
 
             modelBuilder.Entity("Produto", b =>

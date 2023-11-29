@@ -15,6 +15,6 @@ public class ApplicationDbContext : DbContext
         Builder.Entity<Produto>()
             .Property(p => p.Codigo).HasMaxLength(50).IsRequired(false);
         Builder.Entity<Categoria>()
-            .ToTable("Categoria");
+            .ToTable("Categorias");
     }  
 }

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API_Rest_C_.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231031230738_RenomeandoCategorias")]
-    partial class RenomeandoCategorias
+    [Migration("20231128233336_RenomeandoCategoria")]
+    partial class RenomeandoCategoria
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -37,7 +37,7 @@ namespace API_Rest_C_.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categoria", (string)null);
+                    b.ToTable("Categorias", (string)null);
                 });
 
             modelBuilder.Entity("Produto", b =>
